@@ -3,6 +3,7 @@
 class Place {
 	const COLLECTION = "places";
 	const CONTROLLER = "place";
+	const MODULE = "places";
 	
 	//TODO Translate
 	public static $types = array (
