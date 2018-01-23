@@ -18,7 +18,17 @@ class CoController extends CommunecterController {
   	public function actions()
 	{
 	    return array(
-	        'sample'  => 'citizenToolKit.controllers.co.SampleAction'
+	        'test'  => 'places.controllers.actions.TestAction',
+	        'search'  => 'places.controllers.actions.SearchAction'
 	    );
 	}
+
+	public function actionIndex() 
+	{
+    	if(Yii::app()->request->isAjaxRequest)
+	        echo $this->renderPartial("../default/index");
+	    else
+    		$this->render("../default/index");
+    	//$this->redirect(Yii::app()->createUrl( "/".Yii::app()->params["module"]["parent"] ));	
+  	}
 }

@@ -1,6 +1,10 @@
 <?php
 /**
+<<<<<<< HEAD
  * CO Tools Module
+=======
+ * Places Module
+>>>>>>> ccdecd7c57ce3beca98f77c77a4baea0c43fd8b7
  *
  * @author Tibor Katelbach <oceatoon@mail.com>
  * @version 0.1
@@ -12,9 +16,9 @@ class PlacesModule extends CWebModule {
 	private $_assetsUrl;
 
 	private $_version = "v0.1.0";
-	private $_versionDate = "07/01/2018";
-	private $_keywords = "places, tiers-lieux, lieux, géographie, module, opensource,CO,communecter";
-	private $_description = "Places use module for CO";
+	private $_versionDate = "22/01/2018";
+	private $_keywords = "places, locations, module,opensource,CO,communecter";
+	private $_description = "Place module for CO";
 	private $_pageTitle = "Places modules & CO Systems";
 
 	public function getVersion(){return $this->_version;}
@@ -29,6 +33,11 @@ class PlacesModule extends CWebModule {
 	        $this->_assetsUrl = Yii::app()->getAssetManager()->publish(
 	            Yii::getPathOfAlias($this->id.'.assets') );
 	    return $this->_assetsUrl;
+	}
+
+	public function getParentAssetsUrl()
+	{
+		return ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->getModule( Yii::app()->params["module"]["parent"] )->getAssetsUrl()  : $this->module->assetsUrl;
 	}
 
 	public function beforeControllerAction($controller, $action)
@@ -66,8 +75,9 @@ class PlacesModule extends CWebModule {
 			Yii::app()->language = (isset(Yii::app()->session["lang"])) ? Yii::app()->session["lang"] : 'fr';
 
 		Yii::app()->params["module"] = array(
+			"name" => self::getPageTitle(),
 			"parent" => "co2",
-			"overwriteList" => array(
+			"overwrite" => array(
 				"views" => array(),
 				"assets" => array(),
 				"controllers" => array(),
